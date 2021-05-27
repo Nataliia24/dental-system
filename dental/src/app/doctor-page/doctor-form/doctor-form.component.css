@@ -1,0 +1,9 @@
+#doctor {
+  background: url('../../../assets/images/doctor.jpg') no-repeat center;
+  background-size: cover;
+  width: 100%;
+}
+.doctor {
+  color: black;
+  font-weight: 700;
+}

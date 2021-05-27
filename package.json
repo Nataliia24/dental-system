@@ -1,0 +1,52 @@
+{
+  "name": "dentistry-system",
+  "version": "1.0.0",
+  "description": "dentistry system",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "server": "nodemon index",
+    "dental-install": "nmp install --prefix dental",
+    "dental": "npm run start --prefix dental",
+    "dev": "concurrently \"npm run server\" \"npm run dental\""
+  },
+  "keywords": [
+    "express",
+    "angular"
+  ],
+  "author": "Nataliia Oprysko",
+  "license": "ISC",
+  "dependencies": {
+    "@angular/core": "^11.2.12",
+    "@angular/localize": "^11.2.12",
+    "@angular/platform-server": "^11.2.12",
+    "@fullcalendar/angular": "^5.7.0",
+    "@fullcalendar/daygrid": "^5.7.0",
+    "@ionic/angular": "5.6.6",
+    "@ionic/angular-toolkit": "3.1.1",
+    "@ng-bootstrap/ng-bootstrap": "^9.1.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^3.4.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "materialize-css": "^1.0.0-rc.2",
+    "moment": "^2.29.1",
+    "mongodb": "^3.6.6",
+    "mongoose": "^5.12.7",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "node-sass": "^6.0.0",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^0.1102.11",
+    "@angular/cli": "^11.2.11",
+    "angular-ide": "^0.9.76",
+    "concurrently": "^6.0.2",
+    "nodemon": "^2.0.7",
+    "webpack": "^5.37.1"
+  }
+}

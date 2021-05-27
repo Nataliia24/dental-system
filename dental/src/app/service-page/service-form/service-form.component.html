@@ -1,0 +1,66 @@
+<div class="page-title">
+  <h4>
+      <a [routerLink]="['/service']">Послуги</a>
+      <i class="material-icons">keyboard_arrow_right</i>
+      {{isNew ? 'Добавити' : 'Редагувати'}} послугу
+  </h4>
+  <span>
+      <button
+      *ngIf="!isNew"
+      class="btn btn-small red"
+      (click)="deleteService()">
+        <i class="material-icons">delete</i>
+      </button>
+    </span>
+</div>
+
+<div class="row">
+  <form class="col s12 l6" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="input-field">
+          <input
+          formControlName="name"
+          class="col-md-4"
+          id="name"
+          type="text"
+          ngClass="{'invalid': form.get('name').invalid && form.get('name').touched}"
+          >
+          <label for="name">Назва</label>
+          <span
+          class="helper-text red-text"
+          *ngIf="form.get('name').invalid && form.get('name').touched"
+          >
+          <span *ngIf="form.get('name').errors['required']">
+            Ім’я не може бути пустим
+          </span>
+        </span>
+      </div>
+
+      <div class="input-field">
+        <input
+        formControlName="price"
+        class="col-md-4"
+        id="price"
+        type="text"
+        ngClass="{'invalid': form.get('price').invalid && form.get('price').touched}"
+        >
+        <label for="price">Ціна</label>
+        <span
+          class="helper-text red-text"
+          *ngIf="form.get('price').invalid && form.get('price').touched"
+          >
+          <span *ngIf="form.get('price').errors['required']">
+            Введіть будь-ласка ціну
+          </span>
+        </span>
+    </div>
+
+      <div>
+          <button
+          type="submit"
+          [disabled]="form.invalid || form.disabled"
+          class="waves-effect waves-light btn"
+          >
+              Зберегти
+          </button>
+      </div>
+  </form>

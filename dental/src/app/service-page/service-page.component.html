@@ -1,0 +1,32 @@
+<div class="vh-100" id="service">
+<div class="page-title">
+  <h4>Послуги</h4>
+  <button class="waves-effect waves-light btn grey darken-1" [routerLink]="['/service/new']">Додати послугу</button>
+</div>
+
+<div *ngIf="services$ | async as services; else loader" class="row">
+  <div class="col s12 centered">
+      <ul *ngIf="services.length !== 0; else empty" class="collection">
+        <a
+        *ngFor="let service of services"
+        [routerLink]="['/service', service._id]"
+        class="collection-item avatar">
+          <i class="material-icons circle red">arrow_forward</i>
+          <span class="title">{{service.name}}</span>
+          <p>{{service.price}} грн</p>
+        </a>
+      </ul>
+      <ng-template #empty>
+        <div class="center">
+          У вас немає ще послуг
+        </div>
+      </ng-template>
+  </div>
+</div>
+</div>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
+
+

@@ -1,0 +1,42 @@
+<div class="vh-100" id="patient">
+  <div class="page-title">
+    <h4>Список пацієнтів</h4>
+    <button class="waves-effect waves-light btn yellow darken-1" [routerLink]="['/patient/new']">Додати пацієнта</button>
+  </div>
+
+  <div *ngIf="patients$ | async as patients; else loader" class="row">
+    <div class="col s12 centered">
+      <table *ngIf="patients.length !== 0; else empty">
+        <thead>
+          <tr>
+              <th>Ім’я</th>
+              <th>Дата народження</th>
+              <th>Email</th>
+              <th>Номер телефону</th>
+              <th>Дія</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let patient of patients">
+            <td>{{patient.first_name + ' ' + patient.last_name}}</td>
+            <td>{{patient.dateOfBirth | date: 'dd/MM/yyyy'}}</td>
+            <td>{{patient.email}}</td>
+            <td>{{patient.telNumber}}</td>
+            <th><a [routerLink]="['/patient', patient._id]"><i class="small material-icons">more_horiz</i></a></th>
+          </tr>
+        </tbody>
+      </table>
+        <ng-template #empty>
+          <div class="center">
+            Пацієнтів ще не має
+          </div>
+        </ng-template>
+    </div>
+  </div>
+
+  <ng-template #loader>
+    <app-loader></app-loader>
+  </ng-template>
+
+

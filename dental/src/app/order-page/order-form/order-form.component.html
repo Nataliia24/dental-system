@@ -1,0 +1,60 @@
+<div class="page-title">
+  <h4>
+      <a [routerLink]="['/order']">Записи</a>
+      <i class="material-icons">keyboard_arrow_right</i>
+      {{isNew ? 'Додати ' : 'Редагувати інформацію про'}} запис
+  </h4>
+  <span>
+      <button
+      *ngIf="!isNew"
+      class="btn btn-small yellow"
+      (click)="deleteOrder()">
+        <i class="material-icons">delete</i>
+      </button>
+    </span>
+</div>
+
+<div class="row">
+  <form class="col s12" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row d-flex justify-content-center">
+      <div class=" form-group col-3">
+        <label for="dateOfOrder">Дата</label>
+        <input formControlName="dateOfOrder" id="dateOfOrder" type="date" class="form-control">
+      </div>
+      <div *ngIf="patients$ | async as patients"  class="form-group col-3">
+          <label for="patient">Пацієнт</label>
+        <select formControlName="patient" id="patient" class="form-control">
+          <option  selected>Виберіть пацієнта...</option>
+          <option *ngFor="let patient of patients">{{patient.last_name + ' ' + patient.first_name}}</option>
+        </select>
+      </div>
+      <div *ngIf="doctors$ | async as doctors"  class="form-group col-3">
+        <label for="doctor">Лікуючий стоматолог</label>
+      <select formControlName="doctor" id="doctor" class="form-control">
+        <option  selected>Виберіть лікуючого стоматолога...</option>
+        <option *ngFor="let doctor of doctors">{{doctor.last_name + ' ' +  doctor.first_name}}</option>
+      </select>
+    </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div *ngIf="services$ | async as services"  class="form-group col-5">
+        <label for="service">Послуга</label>
+      <select formControlName="service" id="service" class="form-control">
+        <option  selected>Виберіть послугу...</option>
+        <option *ngFor="let service of services">{{service.name}}</option>
+      </select>
+    </div>
+      <div *ngIf="services$ | async as services"  class="form-group col-5">
+        <label for="cost">Ціна</label>
+      <select formControlName="cost" id="cost" class="form-control">
+        <option  selected>Виберіть послугу...</option>
+        <option *ngFor="let service of services">{{service.price}}</option>
+      </select>
+    </div>
+    </div>
+    <div class="float-right">
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid || form.disabled">Зберегти</button>
+  </div>
+  </form>
+</div>
+

@@ -1,0 +1,75 @@
+<div class="page-title">
+  <h4>
+      Дані за вчорашнй день ({{yesterday | date: 'dd.MM.yyyy'}})
+      <i class="material-icons black-text pointer" (click)="openInfo()">
+        info_outline
+      </i>
+  </h4>
+</div>
+
+<div
+class="row"
+*ngIf="data$ | async as data; else loader"
+>
+  <div class="col s12 l6">
+      <div class="card light-green lighten-2 white-text">
+          <div class="card-content">
+              <span class="card-title">Виручка:</span>
+              <h3>{{data.gain.yesterday}} грн</h3>
+              <h3
+              class="m0 mb1"
+              [ngClass]="{
+                'green-text text-darken-2': data.gain.isHier,
+                'red-text': !data.gain.isHier
+              }"
+              >
+                  <i class="material-icons">
+                    {{data.gain.isHier ? 'arrow_upward' : 'arrow_downward' }}
+                    </i>
+                  {{data.gain.percent}}%
+              </h3>
+              <p>
+                Виручка вашої стоматологічної клініки за вчорашній день на
+                {{data.gain.percent}}%
+                {{data.gain.isHier ? 'вище' : 'нижче' }}
+                середнього: {{data.gain.compare}} грн за день</p>
+          </div>
+      </div>
+  </div>
+
+  <div class="col s12 l6">
+      <div class="card orange lighten-2 white-text">
+          <div class="card-content">
+              <span class="card-title">Записи:</span>
+              <h3>{{data.orders.yesterday}} записів</h3>
+              <h3
+              class="m0 mb1"
+              [ngClass]="{
+                'green-text text-darken-2': data.orders.isHier,
+                'red-text': !data.orders.isHier
+              }"
+              >
+                  <i class="material-icons">
+                    {{data.orders.isHier ? 'arrow_upward' : 'arrow_downward' }}
+                  </i>
+                  {{data.orders.percent}}%
+              </h3>
+              <p>Число записів за вчорашній день на
+                {{data.orders.percent}}%
+                {{data.orders.isHier ? 'вище' : 'нижче' }}
+                среднего значення: {{data.orders.compare}} записи за день</p>
+          </div>
+      </div>
+  </div>
+</div>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
+
+<div class="tap-target" data-target="menu" #tapTarget>
+  <div class="tap-target-content">
+      <h5>Для чого потрібна ця сторінка?</h5>
+      <p>Сторінка "Огляд" покаже динаміку проажів за попередній день. Порівняння із середнім значенням допоможе вам зрозуміти, як йдуть справи в стоматологічній клініці.</p>
+  </div>
+</div>

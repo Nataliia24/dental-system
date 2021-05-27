@@ -1,0 +1,41 @@
+<div>
+  <div class="page-title">
+    <h4>Список записів</h4>
+    <button class="waves-effect waves-light btn green darken-1" [routerLink]="['/order/new']">Додати запис</button>
+  </div>
+
+  <div *ngIf="orders$ | async as orders; else loader" class="row">
+    <div class="col s12 centered">
+      <table *ngIf="orders.length !== 0; else empty">
+        <thead>
+          <tr>
+              <th>Дата</th>
+              <th>Пацієнт</th>
+              <th>Лікуючий стоматолог</th>
+              <th>Послуга</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let order of orders">
+            <td>{{order.dateOfOrder | date: 'dd-MM-yyyy'}}</td>
+            <td>{{order.patient}}</td>
+            <td>{{order.doctor}}</td>
+            <td>{{order.service}}</td>
+            <th><a [routerLink]="['/order', order._id]"><i class="small material-icons">more_horiz</i></a></th>
+          </tr>
+        </tbody>
+      </table>
+        <ng-template #empty>
+          <div class="center">
+            Записів ще не має
+          </div>
+        </ng-template>
+    </div>
+  </div>
+
+  <ng-template #loader>
+    <app-loader></app-loader>
+  </ng-template>
+
+

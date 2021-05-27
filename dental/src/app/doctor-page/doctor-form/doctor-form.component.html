@@ -1,0 +1,57 @@
+<div class="vh-100" id="doctor">
+<div class="page-title">
+  <h4>
+      <a [routerLink]="['/doctor']">Стоматологи</a>
+      <i class="material-icons">keyboard_arrow_right</i>
+      {{isNew ? 'Додати ' : 'Редагувати інформацію про'}} стоматолога
+  </h4>
+  <span>
+      <button
+      *ngIf="!isNew"
+      class="btn btn-small yellow"
+      (click)="deleteDoctor()">
+        <i class="material-icons">delete</i>
+      </button>
+    </span>
+</div>
+
+<div class="row">
+  <form class="col s12" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row d-flex justify-content-center">
+      <div class="form-group col-3 ">
+        <label class="doctor" for="first_name">Ім’я</label>
+        <input formControlName="first_name" id="first_name" type="text" class="form-control">
+      </div>
+      <div class="form-group col-3">
+        <label class="doctor" for="last_name">Прізвище</label>
+        <input formControlName="last_name" id="last_name" type="text" class="form-control">
+      </div>
+      <div class="form-group col-3">
+        <label class="doctor" for="email">Email</label>
+        <input formControlName="email" id="email" type="email" class="form-control">
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="form-group col-4">
+        <label class="doctor" for="position">Спеціальність</label>
+      <select formControlName="position" id="position" class="form-control">
+        <option selected>Виберіть спеціальність...</option>
+        <option>Стоматолог-терапевт</option>
+        <option>Стоматолог-ортодонт</option>
+        <option>Стоматолог-ортодонт</option>
+        <option>Стоматолог-хірург</option>
+        <option>Дитячий стоматолог</option>
+      </select>
+      </div>
+      <div class="form-group col-4">
+        <label class="doctor" for="telNumber">Телефон</label>
+        <input formControlName="telNumber" id="telNumber" type="text" class="form-control">
+      </div>
+    </div>
+    <div class="float-right">
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid || form.disabled">Зберегти</button>
+  </div>
+  </form>
+</div>
+</div>
+

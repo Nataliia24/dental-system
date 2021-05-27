@@ -1,0 +1,10 @@
+{
+    "prettier.trailingComma": "all",
+    "editor.formatOnSave": true,
+    "prettier.useTabs": true,
+    "prettier.singleQuote": true,
+    "prettier.resolveGlobalModules": true,
+    "prettier.requireConfig": true,
+    "prettier.requirePragma": true,
+    "prettier.jsxSingleQuote": true
+}
